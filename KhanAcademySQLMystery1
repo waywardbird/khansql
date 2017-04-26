@@ -1,0 +1,44 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE persons (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                      fullname TEXT,
+                      prop_id INTEGER);
+
+INSERT INTO persons (fullname, prop_id) VALUES ("Tara McManus", 5);
+INSERT INTO persons (fullname, prop_id) VALUES ("Warren Seng", 1);
+INSERT INTO persons (fullname, prop_id) VALUES ("Lydia Darling", 2);
+INSERT INTO persons (fullname, prop_id) VALUES ("Adam Benson", 3);
+INSERT INTO persons (fullname, prop_id) VALUES ("Wolf Bukiet", 4);
+
+CREATE TABLE props (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT);
+
+INSERT INTO props (name) VALUES ("poi");
+INSERT INTO props (name) VALUES ("fans");
+INSERT INTO props (name) VALUES ("juggling");
+INSERT INTO props (name) VALUES ("double staves");
+INSERT INTO props (name) VALUES ("fire eating");
+
+CREATE TABLE duets (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    person1_id INTEGER,
+                    person2_id INTEGER);
+
+INSERT INTO duets (person1_id, person2_id) VALUES (1, 3);
+INSERT INTO duets (person1_id, person2_id) VALUES (2, 4);
+
+
+SELECT persons.fullname, props.name as prop FROM persons
+    JOIN props
+    ON persons.prop_id = props.id;
+
+SELECT a.fullname as firstperson, b.fullname as secondperson FROM duets
+    JOIN persons a
+    ON duets.person1_id = a.id
+    JOIN persons b
+    ON duets.person2_id = b.id;
+
+/*I want to display the props being used in the two duets (fire eating, fans;
+poi, juggling) but I'm unsure of how to join them in order to do that. I know
+that I can display the names (see above) but I can't then get it to display
+prop names based on persons.id it's pulling. The closest I can get is to have
+it display the respective props.id. Halp?*/
