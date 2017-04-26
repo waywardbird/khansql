@@ -41,4 +41,17 @@ SELECT a.fullname as firstperson, b.fullname as secondperson FROM duets
 poi, juggling) but I'm unsure of how to join them in order to do that. I know
 that I can display the names (see above) but I can't then get it to display
 prop names based on persons.id it's pulling. The closest I can get is to have
-it display the respective props.id. Halp?*/
+it display the respective props.id. Halp?
+
+My impulse was something like this, but it's not working:
+
+SELECT c.name as firstprop, d.name as secondprop FROM duets
+    JOIN persons a
+    ON duets.person1_id = a.prop_id
+    JOIN persons b
+    ON duets.person2_id = b.prop_id
+    JOIN props c
+    ON a.prop_id = c.name
+    JOIN props d
+    ON b.prop_id = d.name;
+*/
